@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nagesh DevOps Practice</title>
+    <title>DevOps Practice Lab | Adithya</title>
 
     <style>
         * {
@@ -13,161 +13,688 @@
             padding: 0;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            color: #222;
+        html {
+            scroll-behavior: smooth;
         }
 
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+
         header {
-            background: #1f2937;
+            background: #111827;
             color: white;
-            padding: 25px 8%;
+            padding: 18px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         header h1 {
-            font-size: 26px;
+            font-size: 24px;
+        }
+
+        header h1 span {
+            color: #38bdf8;
         }
 
         nav a {
-            color: white;
+            color: #d1d5db;
             text-decoration: none;
             margin-left: 25px;
+            font-size: 15px;
+            transition: 0.3s;
         }
 
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* Hero */
+
         .hero {
+            background: linear-gradient(135deg, #111827, #1e3a5f);
+            color: white;
             text-align: center;
-            padding: 80px 20px;
-            background: white;
+            padding: 100px 20px;
         }
 
         .hero h2 {
-            font-size: 42px;
-            margin-bottom: 15px;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 span {
+            color: #38bdf8;
         }
 
         .hero p {
-            font-size: 18px;
-            color: #666;
+            font-size: 19px;
+            color: #d1d5db;
+            max-width: 700px;
+            margin: auto;
         }
+
+        .hero-buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 7px;
+            text-decoration: none;
+            margin: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            background: #7dd3fc;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid #64748b;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #334155;
+        }
+
+        /* Container */
 
         .container {
             width: 85%;
-            max-width: 1100px;
-            margin: 50px auto;
+            max-width: 1150px;
+            margin: 70px auto;
         }
 
-        .container h2 {
+        .section-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #6b7280;
+        }
+
+        /* Technology Cards */
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 22px;
         }
 
         .card {
             background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            border: 1px solid #e5e7eb;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .icon {
+            font-size: 35px;
+            margin-bottom: 15px;
         }
 
         .card h3 {
             margin-bottom: 10px;
+            font-size: 21px;
         }
 
         .card p {
-            color: #666;
-            line-height: 1.5;
+            color: #6b7280;
+            font-size: 15px;
         }
 
-        .status {
-            margin-top: 40px;
+        /* Pipeline */
+
+        .pipeline {
+            background: #111827;
+            color: white;
+            padding: 50px 30px;
+            border-radius: 15px;
             text-align: center;
+        }
+
+        .pipeline h2 {
+            margin-bottom: 35px;
+            font-size: 30px;
+        }
+
+        .pipeline-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pipeline-step {
+            background: #1f2937;
+            border: 1px solid #374151;
+            padding: 18px 22px;
+            border-radius: 10px;
+            min-width: 120px;
+        }
+
+        .pipeline-step strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #38bdf8;
+        }
+
+        .arrow {
+            font-size: 25px;
+            color: #38bdf8;
+        }
+
+        /* Deployment Status */
+
+        .status {
+            margin-top: 50px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .status-title {
+            color: #047857;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .status p {
+            color: #065f46;
+        }
+
+        .live {
+            display: inline-block;
+            margin-top: 12px;
+            background: #10b981;
+            color: white;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* Project Information */
+
+        .project {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .project-item {
             padding: 20px;
-            background: #dcfce7;
+            background: #f8fafc;
             border-radius: 10px;
         }
 
+        .project-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #111827;
+        }
+
+        .project-item span {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Footer */
+
         footer {
-            margin-top: 60px;
-            padding: 25px;
+            margin-top: 80px;
+            background: #111827;
+            color: #9ca3af;
             text-align: center;
-            background: #1f2937;
+            padding: 30px 20px;
+        }
+
+        footer strong {
             color: white;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .hero h2 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .pipeline-flow {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
         }
     </style>
 </head>
 
 <body>
 
+<!-- Navigation -->
+
 <header>
-    <h1>DevOps Lab</h1>
+
+    <h1>DevOps<span>Lab</span></h1>
 
     <nav>
-        <a href="#tools">Tools</a>
+        <a href="#tools">Technologies</a>
+        <a href="#pipeline">CI/CD</a>
         <a href="#deployment">Deployment</a>
+        <a href="#project">Project</a>
     </nav>
+
 </header>
 
+
+<!-- Hero Section -->
+
 <section class="hero">
-    <h2>My DevOps Practice Environment</h2>
-    <p>Learning Linux, Git, Docker, AWS and CI/CD</p>
+
+    <h2>My <span>DevOps</span> Practice Environment</h2>
+
+    <p>
+        Hands-on learning and implementation of Linux, Git, Docker,
+        AWS, Jenkins and Kubernetes through a real CI/CD deployment.
+    </p>
+
+    <div class="hero-buttons">
+
+        <a href="#pipeline" class="btn btn-primary">
+            View CI/CD Pipeline
+        </a>
+
+        <a href="#tools" class="btn btn-secondary">
+            Explore Technologies
+        </a>
+
+    </div>
+
 </section>
+
+
+<!-- Technologies -->
 
 <section class="container" id="tools">
 
-    <h2>DevOps Technologies</h2>
+    <div class="section-title">
+
+        <h2>DevOps Technologies</h2>
+
+        <p>
+            Tools and technologies used in this practice environment
+        </p>
+
+    </div>
+
 
     <div class="cards">
 
         <div class="card">
+
+            <div class="icon">🐧</div>
+
             <h3>Linux</h3>
-            <p>Working with Linux commands, processes, services, networking and filesystems.</p>
+
+            <p>
+                Working with Linux commands, processes, services,
+                networking, permissions and filesystems.
+            </p>
+
         </div>
 
-        <div class="card">
-            <h3>Git</h3>
-            <p>Practicing repositories, branches, commits, merge and remote operations.</p>
-        </div>
 
         <div class="card">
+
+            <div class="icon">🔀</div>
+
+            <h3>Git & GitHub</h3>
+
+            <p>
+                Practicing repositories, branches, commits,
+                remote operations and source code management.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🐳</div>
+
             <h3>Docker</h3>
-            <p>Building Docker images, containers, Dockerfiles and containerized applications.</p>
+
+            <p>
+                Building Docker images, containers and Dockerfiles
+                for containerized applications.
+            </p>
+
         </div>
 
+
         <div class="card">
+
+            <div class="icon">☁️</div>
+
             <h3>AWS</h3>
-            <p>Practicing EC2, VPC, S3, ALB, Route 53, CloudWatch and EFS.</p>
+
+            <p>
+                Practicing EC2, VPC, S3, ALB, Route 53,
+                CloudWatch and EFS.
+            </p>
+
         </div>
 
+
         <div class="card">
+
+            <div class="icon">⚙️</div>
+
             <h3>Jenkins</h3>
-            <p>Creating CI/CD pipelines to automatically build and deploy applications.</p>
+
+            <p>
+                Creating CI/CD pipelines that automatically
+                build, push and deploy applications.
+            </p>
+
         </div>
+
 
         <div class="card">
-            <h3>Monitoring</h3>
-            <p>Practicing Prometheus, Node Exporter and Grafana monitoring.</p>
+
+            <div class="icon">☸️</div>
+
+            <h3>Kubernetes</h3>
+
+            <p>
+                Deploying containerized applications using
+                Deployments, Services and rolling updates.
+            </p>
+
         </div>
 
-    </div>
 
-    <div class="status" id="deployment">
-        <strong>Deployment Status:</strong> Application is running successfully 🚀
+        <div class="card">
+
+            <div class="icon">📊</div>
+
+            <h3>Monitoring</h3>
+
+            <p>
+                Practicing Prometheus, Node Exporter and
+                Grafana for application and infrastructure monitoring.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🌐</div>
+
+            <h3>Nginx</h3>
+
+            <p>
+                Hosting and serving the web application through
+                an Nginx container.
+            </p>
+
+        </div>
+
     </div>
 
 </section>
 
+
+<!-- CI/CD Pipeline -->
+
+<section class="container" id="pipeline">
+
+    <div class="pipeline">
+
+        <h2>CI/CD Pipeline</h2>
+
+        <div class="pipeline-flow">
+
+            <div class="pipeline-step">
+                <strong>01</strong>
+                GitHub
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="pipeline-step">
+                <strong>02</strong>
+                Jenkins
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="pipeline-step">
+                <strong>03</strong>
+                Docker
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="pipeline-step">
+                <strong>04</strong>
+                Docker Hub
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="pipeline-step">
+                <strong>05</strong>
+                Kubernetes
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="pipeline-step">
+                <strong>06</strong>
+                Nginx
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Deployment Status -->
+
+<section class="container" id="deployment">
+
+    <div class="status">
+
+        <div class="status-title">
+            🚀 Deployment Successful
+        </div>
+
+        <p>
+            Application is running successfully inside
+            a Kubernetes cluster.
+        </p>
+
+        <span class="live">
+            ● LIVE
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- Project Information -->
+
+<section class="container" id="project">
+
+    <div class="section-title">
+
+        <h2>Project Overview</h2>
+
+        <p>
+            A practical DevOps CI/CD implementation
+        </p>
+
+    </div>
+
+
+    <div class="project">
+
+        <div class="project-grid">
+
+            <div class="project-item">
+
+                <strong>Source Control</strong>
+
+                <span>
+                    Git & GitHub
+                </span>
+
+            </div>
+
+
+            <div class="project-item">
+
+                <strong>CI/CD</strong>
+
+                <span>
+                    Jenkins Pipeline
+                </span>
+
+            </div>
+
+
+            <div class="project-item">
+
+                <strong>Containerization</strong>
+
+                <span>
+                    Docker & Docker Hub
+                </span>
+
+            </div>
+
+
+            <div class="project-item">
+
+                <strong>Orchestration</strong>
+
+                <span>
+                    Kubernetes / Minikube
+                </span>
+
+            </div>
+
+
+            <div class="project-item">
+
+                <strong>Web Server</strong>
+
+                <span>
+                    Nginx
+                </span>
+
+            </div>
+
+
+            <div class="project-item">
+
+                <strong>Cloud Platform</strong>
+
+                <span>
+                    Amazon Web Services
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Footer -->
+
 <footer>
-    DevOps Practice Lab | Docker • AWS • CI/CD
+
+    <p>
+        <strong>DevOps Practice Lab</strong>
+    </p>
+
+    <p>
+        Docker • AWS • Jenkins • Kubernetes • CI/CD
+    </p>
+
+    <p style="margin-top: 10px;">
+        Built as a hands-on DevOps learning project 🚀
+    </p>
+
 </footer>
+
 
 </body>
 </html>
