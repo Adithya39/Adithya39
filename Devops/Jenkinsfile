@@ -51,7 +51,7 @@ pipeline {
             steps {
                 sh '''
                     minikube kubectl -- set image deployment/nginx-web \
-                    nginx-web=$IMAGE_NAME:$BUILD_NUMBER
+                    nginx=$IMAGE_NAME:$BUILD_NUMBER
                 '''
             }
         }
