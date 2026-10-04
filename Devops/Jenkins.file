@@ -1,0 +1,79 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = 'adithya39/adithya-devops'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                    docker build -t $IMAGE_NAME:$BUILD_NUMBER .
+                '''
+            }
+        }
+
+        stage('Login to Docker Hub') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-credentials',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        echo $DOCKER_PASSWORD | docker login \
+                        -u $DOCKER_USERNAME \
+                        --password-stdin
+                    '''
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                sh '''
+                    docker push $IMAGE_NAME:$BUILD_NUMBER
+                '''
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh '''
+                    minikube kubectl -- set image deployment/nginx-web \
+                    nginx-web=$IMAGE_NAME:$BUILD_NUMBER
+                '''
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                    minikube kubectl -- get pods
+                    minikube kubectl -- get deployment
+                    minikube kubectl -- get service
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'CI/CD pipeline completed successfully!'
+        }
+
+        failure {
+            echo 'Pipeline failed. Check the Jenkins console output.'
+        }
+    }
+}
